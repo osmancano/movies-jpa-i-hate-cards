@@ -58,9 +58,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">Home</a></li>
+                <li><a href="/secure/movies">Home</a></li>
                 <li><a href="/secure/create.jsp">Create</a></li>
-                <li><a href="/secure/favourites">Favourites</a></li>
+                <li class="active"><a href="">Favourites</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/secure/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
@@ -71,22 +71,25 @@
 
 <div class="container">
     <div class="row">
-        <h4>Movies List:</h4>
-        <c:forEach items="${mList}" var="aMovie">
-            <div class="media">
-                <div class="media-left media-top">
-                    <img src="<c:out value="${aMovie.posterUrl}"/>" class="media-object" style="width:60px">
+        <h4>Favourites List goes here:</h4>
+        <div class="col-sm-6 offset-sm-2">
+            <h4>Movies List:</h4>
+            <c:forEach items="${user.favorites}" var="aMovie">
+                <div class="media">
+                    <div class="media-left media-top">
+                        <img src="<c:out value="${aMovie.posterUrl}"/>" class="media-object" style="width:60px">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <c:out value="${aMovie.name}"/>
+                            <a href="/secure/removeFromFavourites?mID=<c:out value="${aMovie.id}"/>" class="btn btn-danger btn-xs">Remove from Favourites</a>
+                        </h4>
+                        <p><c:out value="${aMovie.description}"/></p>
+                        <p><small class="text-muted"><c:out value="${aMovie.mpaaRating}"/></small></p>
+                    </div>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        <c:out value="${aMovie.name}"/>
-                        <a href="/secure/addToFavourites?mID=<c:out value="${aMovie.id}"/>" class="btn btn-danger btn-xs">Add to Favourites</a>
-                    </h4>
-                    <p><c:out value="${aMovie.description}"/></p>
-                    <p><small class="text-muted"><c:out value="${aMovie.mpaaRating}"/></small></p>
-                </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </div>
 </div>
 

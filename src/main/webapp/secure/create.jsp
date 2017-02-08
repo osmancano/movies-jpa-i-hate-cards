@@ -58,8 +58,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">Home</a></li>
-                <li><a href="/secure/create.jsp">Create</a></li>
+                <li><a href="/secure/movies">Home</a></li>
+                <li class="active"><a href="">Create</a></li>
                 <li><a href="/secure/favourites">Favourites</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -71,22 +71,51 @@
 
 <div class="container">
     <div class="row">
-        <h4>Movies List:</h4>
-        <c:forEach items="${mList}" var="aMovie">
-            <div class="media">
-                <div class="media-left media-top">
-                    <img src="<c:out value="${aMovie.posterUrl}"/>" class="media-object" style="width:60px">
+        <h4>Create Movie Form:</h4>
+        <div class="col-sm-6 offset-sm-2">
+            <form class="form" action="/secure/create" method="post">
+                <div class="form-group">
+                    <label for="mName">Movie Name:</label>
+                    <input type="text" class="form-control" id="mName" name="mName" required/>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        <c:out value="${aMovie.name}"/>
-                        <a href="/secure/addToFavourites?mID=<c:out value="${aMovie.id}"/>" class="btn btn-danger btn-xs">Add to Favourites</a>
-                    </h4>
-                    <p><c:out value="${aMovie.description}"/></p>
-                    <p><small class="text-muted"><c:out value="${aMovie.mpaaRating}"/></small></p>
+                <div class="form-group">
+                    <label for="mDesc">Description:</label>
+                    <input type="text" class="form-control" id="mDesc" name="mDesc" required/>
                 </div>
-            </div>
-        </c:forEach>
+                <div class="form-group">
+                    <label for="mPostUrl">Post URL:</label>
+                    <input type="url" class="form-control" id="mPostUrl" name="mPostUrl" required/>
+                </div>
+                <div class="form-group">
+                    <label for="mMpaa">MPAA Rating:</label>
+                    <select id="mMpaa" name="mMpaa">
+                        <option value="G">G</option>
+                        <option value="PG">PG</option>
+                        <option value="PG-13">PG-13</option>
+                        <option value="NC-17">NC-17</option>
+                        <option value="UR">UR</option>
+                        <option value="R">R</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mCategory">Category:</label>
+                    <select id="mCategory" name="mCategory">
+                        <option value="Family">Family</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mRating">Rating:</label>
+                    <input type="number" class="form-control" id="mRating" name="mRating" step="0.01" required/>
+                </div>
+                <button type="submit" class="btn btn-info">Add Movie</button>
+            </form>
+            <br/>
+        </div>
     </div>
 </div>
 

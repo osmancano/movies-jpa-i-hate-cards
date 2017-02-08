@@ -1,6 +1,7 @@
 package com.ironyard.data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class MovieUser {
     private String password;
     private String displayName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private List<Movie> favorites;
 
     public List<Movie> getFavorites() {
